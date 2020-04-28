@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package protofig;
+
+option go_package = ".;protofig";
+
+import "validate/validate.proto";
+//import "google/protobuf/empty.proto";
+
+message Config {
+    string key = 1;
+    ConfigVal val = 2;
+}
+
+message ConfigVal {
+    oneof val {
+        string string_val = 1;
+        uint64 uint64_val = 2;
+        string email_val = 3 [(validate.rules).string.email = true];
+        bytes cidr_val = 4 [(validate.rules).bytes.ip = true];
+    }
+}

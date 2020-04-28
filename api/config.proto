@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "api;api";
+
+import "protofig/protofig.proto";
+//import "google/protobuf/empty.proto";
+
+message AppConfig {
+    MinioComponent minio_component = 1;
+    MaintemplateComponent maintemplate_component = 2;
+}
+
+message MinioComponent {
+    protofig.Config minio_acceskey = 1;
+    protofig.Config minio_secretkey = 2;
+}
+
+message MaintemplateComponent {
+    protofig.Config gcp_user = 1;
+    protofig.Config gcp_project = 2;
+    protofig.Config minio_location = 3;
+    protofig.Config minio_timeout = 4;
+    protofig.Config minio_enckey = 5;
+    protofig.Config minio_ssl = 6;
+    protofig.Config minio_endpoint = 7;
+}
